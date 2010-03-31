@@ -20,4 +20,4 @@ if not cam then
     cam = io.read("*l")
 end
 
-os.execute("mencoder -mf w=640:h=480:fps=10 -ovc copy -o C"..cam.."-"..day..".avi mf://"..day.."/C"..cam.."*.jpg")
+os.execute("mencoder -mf w=640:h=480:fps=5 -ovc copy -o C"..cam.."-"..day..".avi mf://"..day.."/C"..cam.."*.jpg")
