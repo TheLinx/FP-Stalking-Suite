@@ -22,8 +22,12 @@ end
 
 if cam == "1" then
     fps = 5
-elseif cam = "2" then
+elseif cam == "2" then
     fps = 10
 end
 
-os.execute("mencoder -mf w=640:h=480:fps="..fps.." -ovc copy -o C"..cam.."-"..day..".avi mf://"..day.."/C"..cam.."*.jpg")
+menc = io.popen("mencoder -msglevel all=1 -mf w=640:h=480:fps="..fps.." -ovc copy -o C"..cam.."-"..day..".avi mf://"..day.."/C"..cam.."*.jpg")
+menc:read("*all") -- wait for it to finish
+print("Mencoder is done! Running ffmpeg...")
+os.execute("ffmpeg -i C"..cam.."-"..day..".avi -b 512000 C"..cam.."-"..day..".mp4 2>/dev/null")
+print("Everything is good!")
