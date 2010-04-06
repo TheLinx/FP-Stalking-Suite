@@ -30,4 +30,6 @@ menc = io.popen("mencoder -msglevel all=1 -mf w=640:h=480:fps="..fps.." -ovc cop
 menc:read("*all") -- wait for it to finish
 print("Mencoder is done! Running ffmpeg...")
 os.execute("ffmpeg -i C"..cam.."-"..day..".avi -b 512000 C"..cam.."-"..day..".mp4 2>/dev/null")
-print("Everything is good!")
+print("ffmpeg is done! removing the mjpeg video...")
+os.remove("C"..cam.."-"..day..".avi")
+print("All is well!")
