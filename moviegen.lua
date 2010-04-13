@@ -1,12 +1,15 @@
 local lfs = require"lfs"
 
+out = true
+
 if arg then
     if arg[1] == "auto" then
         day = os.date("%y-%m-%d")
     else
-        day = arg[1] or nil
+        day = arg[1]
     end
-    cam = arg[2] or nil
+    cam = arg[2]
+    out = arg[3] and nil
 end
 
 if not day then
@@ -28,9 +31,9 @@ end
 
 menc = io.popen("mencoder -msglevel all=1 -mf w=640:h=480:fps="..fps.." -ovc copy -o C"..cam.."-"..day..".avi mf://"..day.."/C"..cam.."*.jpg")
 menc:read("*all") -- wait for it to finish
-print("mencoder is done! Running ffmpeg...")
+if out then print("mencoder is done! Running ffmpeg...") end
 ffmg = io.popen("ffmpeg -i C"..cam.."-"..day..".avi -b 512000 C"..cam.."-"..day..".mp4 2>/dev/null")
 ffmg:read("*all")
-print("ffmpeg is done! Removing the mjpeg video...")
+if out then print("ffmpeg is done! Removing the mjpeg video...") end
 os.remove("C"..cam.."-"..day..".avi")
-print("All is well!")
+if out then print("All is well!") end

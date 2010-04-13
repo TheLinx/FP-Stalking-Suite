@@ -43,7 +43,7 @@ Content-Type: application/atom+xml; charset=UTF-8
   </media:group>
 </entry>
 --dwh8d7agwd7gwag7
-Content-Type: video/jpeg
+Content-Type: video/mp4
 Content-Transfer-Encoding: binary
 
 %s
