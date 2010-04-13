@@ -4,6 +4,8 @@ require"socket"
 -- this doesn't work for some reason
 -- T.T
 
+-- GOTTA DO SOMETHING ABOUT THIS
+
 local uph = [[POST /feeds/api/users/default/uploads HTTP/1.1
 Host: uploads.gdata.youtube.com
 Authorization: GoogleLogin auth=%s
@@ -57,8 +59,8 @@ loadfile(os.getenv("HOME").."/.ytupload")()
 
 fname = arg and arg[1]
 if not lfs.attributes(fname) then
-	print('Could not find the file "'..fname..'"!')
-	error()
+    print('Could not find the file "'..fname..'"!')
+    error()
 end
 
 fhand = io.open(fname)
@@ -71,11 +73,11 @@ ups = string.format(upc, cam, day, cam, fcont)
 pushs = string.format(uph, GoogleLogin, GDataKey, fname, #ups)..ups
 
 if arg[2] and arg[2] == "out" then
-	io.stdout:write(pushs)
+    io.stdout:write(pushs)
 else
-	pusher = socket.connect(socket.dns.toip("uploads.gdata.youtube.com"), 80)
-	io.write("Transmitting...") io.flush()
-	pusher:send(pushs)
-	print("done!")
-	print(pusher:receive("*a"))
+    pusher = socket.connect(socket.dns.toip("uploads.gdata.youtube.com"), 80)
+    io.write("Transmitting...") io.flush()
+    pusher:send(pushs)
+    print("done!")
+    print(pusher:receive("*a"))
 end
