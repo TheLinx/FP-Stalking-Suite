@@ -59,7 +59,7 @@ while true do
                 sink = ltn12.sink.file(io.open("C1-"..os.date("%H-%M-%S")..".jpg", "w"))
             }
         end
-        if os.time() > (last2 or 0)+4.5 then
+        if os.time() > (last2 or 0)+9.5 then
             last2 = os.time()
             print("Downloading from camera #2")
             http.request{ 
