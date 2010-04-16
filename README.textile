@@ -1,0 +1,16 @@
+h1. The FP Stalking suite!
+
+All these scripts are meant to be run by a Lua 5.1 intepreter.
+You'll need LuaSocket and LuaFilesystem too.
+
+h2. fpstalk.lua
+Run this script to automatically download the Facepunch cameras every 5/10 seconds (depending on camera).
+It will download into a folder named after the current date in the directory it is run.
+
+h2. moviegen.lua
+Run this script to start a guide to generate a movie out of the dumped images.
+It assumes that ffmpeg and mencoder are both installed and in your PATH.
+
+h2. ytupload.lua
+This script is supposed to upload stuff to Youtube, but it doesn't work.
+:(
